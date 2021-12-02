@@ -1,7 +1,7 @@
 {
 	"name": "thaw-mongodb-web-service",
-	"version": "0.0.0",
-	"description": "A REST Web service that provides access to MongoDB databases.",
+	"version": "0.0.1",
+	"description": "A REST Web service that provides CRUD access to MongoDB databases.",
 	"keywords": [
 		"MongoDB",
 		"TypeScript"
@@ -31,7 +31,7 @@
 		"test": "test"
 	},
 	"scripts": {
-		"all": "npm run rebuild-online && npm pack && npm run deploy",
+		"all": "npm run rebuild-online",
 		"// allw": "rmdir /Q /S coverage & rmdir /Q /S dist & npm run lint & npm run prettiercheck & npm run build & npm test & npm pack & move /Y thaw-mongodb-web-service-*.tgz C:\\git\\npm-packages\\",
 		"rebuild-offline": "npm run clean-offline && npm run build-and-test",
 		"clean-build-products": "rm -rf coverage && rm -rf dist",
@@ -46,7 +46,6 @@
 		"rollup": "rollup --config",
 		"// test": "jest",
 		"test": "echo \"There are no tests.\"",
-		"deploy": "eval mv $npm_package_name-$npm_package_version.tgz $(echo $npm_package_config_deploy_target_dir)/",
 		"// prepare": "npm run build",
 		"// prepublishOnly": "npm test && npm run lint",
 		"prepublishOnly": "npm run lint",
@@ -54,39 +53,41 @@
 		"version": "npm run prettier-format && git add -A src",
 		"postversion": "git push && git push --tags",
 		"loc": "git ls-files | grep -v package-lock.json | tr -d '\\r' | tr '\\n' '\\0' | xargs -0 wc -l",
-		"re": "npm run prettier-format && npm run clean-build-products && npm run build-and-test && npm pack && npm run deploy",
+		"re": "npm run prettier-format && npm run clean-build-products && npm run build-and-test",
 		"f": "npm run clean && npm i && npm run re",
 		"start": "node dist/thaw-mongodb-web-service.cjs.js"
 	},
-	"config": {
-		"deploy_target_dir": "$NPM_PKG_DIR"
-	},
+	"config": {},
 	"publishConfig": {},
 	"dependencies": {
-		"thaw-common-utilities.ts": "^0.0.10",
+		"thaw-common-utilities.ts": "^0.0.11",
 		"thaw-http-server-base": "^0.0.0",
 		"thaw-mongodb-client-direct": "^0.0.3"
 	},
 	"devDependencies": {
-		"@rollup/plugin-node-resolve": "^13.0.5",
-		"@types/eslint": "^7.28.0",
+		"@rollup/plugin-node-resolve": "^13.0.6",
+		"@types/eslint": "^8.2.0",
 		"@types/node": "^16",
-		"@typescript-eslint/eslint-plugin": "^4.33.0",
-		"@typescript-eslint/parser": "^4.33.0",
-		"@typescript-eslint/typescript-estree": "^4.33.0",
-		"eslint": "^7.32.0",
-		"prettier": "^2.4.1",
-		"rollup": "^2.58.0",
+		"@typescript-eslint/eslint-plugin": "^5.5.0",
+		"@typescript-eslint/parser": "^5.5.0",
+		"@typescript-eslint/typescript-estree": "^5.5.0",
+		"eslint": "^8.3.0",
+		"prettier": "^2.5.0",
+		"rollup": "^2.60.2",
 		"rollup-plugin-terser": "^7.0.2",
 		"thaw-types": "^0.0.5",
-		"typescript": "^4.4.3",
-		"typescript-eslint-language-service": "^4.1.5"
+		"typescript": "^4.5.2",
+		"typescript-eslint-language-service": "^5.0.0"
 	},
 	"// The correct name is bundledDependencies": true,
 	"// The name bundleDependencies is also honoured": true,
 	"// bundledDependencies": "... is an array of package names",
 	"// bundledDependencies: See": "https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bundleddependencies",
 	"bundledDependencies": [],
+	"peerDependencies": {},
+	"optionalDependencies": {
+		"fsevents": "*"
+	},
 	"engines": {
 		"node": ">= 12.9"
 	},
